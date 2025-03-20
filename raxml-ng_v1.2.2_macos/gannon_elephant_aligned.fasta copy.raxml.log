@@ -1,0 +1,64 @@
+
+RAxML-NG v. 1.2.2 released on 30.04.2024 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Apple M1, 8 cores, 16 GB RAM
+
+RAxML-NG was called at 20-Mar-2025 17:58:54 as follows:
+
+./raxml-ng --parse --msa gannon_elephant_aligned.fasta copy --model GTR+G
+
+Analysis options:
+  run mode: Alignment parsing and compression
+  start tree(s): 
+  random seed: 1742511534
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  logLH epsilon: general: 0.100000, brlen-triplet: 1000.000000
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: SSE3
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+[00:00:00] Reading alignment from file: gannon_elephant_aligned.fasta copy
+[00:00:00] Loaded alignment with 50 taxa and 1961 sites
+
+WARNING: Sequences AY741323.1 and AY741324.1 are exactly identical!
+WARNING: Sequences AY741321.1 and AY741068.1 are exactly identical!
+WARNING: Duplicate sequences found: 2
+
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: was saved to: /Users/gannonkreuser/Desktop/GannonPLPATH/raxml-ng_v1.2.2_macos/gannon_elephant_aligned.fasta copy.raxml.reduced.phy
+
+Alignment comprises 1 partitions and 181 patterns
+
+Partition 0: noname
+Model: GTR+FO+G4m
+Alignment sites / patterns: 1961 / 181
+Gaps: 5.19 %
+Invariant sites: 89.85 %
+
+
+NOTE: Binary MSA file created: gannon_elephant_aligned.fasta copy.raxml.rba
+
+
+* Estimated memory requirements                : 3 MB
+
+* Recommended number of threads / MPI processes: 1
+
+Please note that numbers given above are rough estimates only. 
+Actual memory consumption and parallel performance on your system may differ!
+
+Alignment can be successfully read by RAxML-NG.
+
+
+Execution log saved to: /Users/gannonkreuser/Desktop/GannonPLPATH/raxml-ng_v1.2.2_macos/gannon_elephant_aligned.fasta copy.raxml.log
+
+Analysis started: 20-Mar-2025 17:58:54 / finished: 20-Mar-2025 17:58:54
+
+Elapsed time: 0.007 seconds
+
