@@ -57,6 +57,7 @@ We assume sites evolve independently
 All sites evolve the same 
 The phylogenetic tree follows a bifurcating structure.
 
+
 Checking the version:
 % ./raxml-ng -v
 
@@ -75,5 +76,64 @@ AIC score: 9267.380902 / AICc score: 9279.616069 / BIC score: 9858.989144
 Free parameters (model + branch lengths): 106
 
 WARNING: Best ML tree contains 12 near-zero branches!
+
+
+
+
+MrBayes
+
+Description: 
+
+A program for Bayesian inference of phylogeny using Markov Chain Monte Carlo (MCMC) methods. It estimates the posterior probability of phylogenetic trees and model parameters.
+
+Strengths:
+
+- Provides probability-based estimates of trees
+- Can incorporate complex evolutionary models
+- Supports mixed-model analysis
+- Well-documented and widely used
+
+Weaknesses:
+
+- Computationally intensive
+- Convergence can be hard to assess
+- Slower than some alternatives for large datasets
+
+Assumptions:
+
+- Assumes a model of sequence evolution
+- Assumes priors for parameters and tree topology
+- MCMC sampling reflects the posterior distribution
+
+I followed the tutorial provided here: 
+https://github.com/crsl4/phylogenetics-class/blob/master/exercises/notebook-log.md 
+
+Downloading MrBayes: 
+
+% brew tap brewsci/bio
+% brew install mrbayes --with-open-mpi
+
+I create the MrBayes block in accordance with the research paper's data (the researchers did not use bayesian methods so all priors and such are derived from the data)
+
+% touch mbblock2.txt
+% open mbblock2.txt
+
+begin mrbayes;
+ set autoclose=yes;
+ prset brlenspr=unconstrained:exp(10.0);
+ prset shapepr=exp(1.333);
+ prset tratiopr=beta(24.0,1.0);
+ prset statefreqpr=dirichlet(3.011,2.703,1.347,2.939);
+ lset nst=2 rates=invgamma ngammacat=4;
+ mcmcp ngen=1000000 samplefreq=100 printfreq=100 nruns=2 nchains=4 savebrlens=yes;
+ outgroup Elephas-maximus;
+ mcmc;
+ sumt;
+end;
+
+% cat gannon_elephant_aligned4_single_line.nex mbblock2.txt > gannon_elephant_aligned-mb.nex
+% mb gannon_elephant_aligned-mb.nex
+
+
 
 

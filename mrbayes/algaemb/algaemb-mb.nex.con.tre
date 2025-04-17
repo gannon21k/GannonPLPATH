@@ -1,0 +1,28 @@
+#NEXUS
+[ID: 8690191153]
+begin taxa;
+	dimensions ntax=8;
+	taxlabels
+		Tobacco
+		Rice
+		Marchantia
+		Chlamydomonas
+		Chlorella
+		Euglena
+		Anacystis_nidulans
+		Olithodiscus
+		;
+end;
+begin trees;
+	translate
+		1	Tobacco,
+		2	Rice,
+		3	Marchantia,
+		4	Chlamydomonas,
+		5	Chlorella,
+		6	Euglena,
+		7	Anacystis_nidulans,
+		8	Olithodiscus
+		;
+   tree con_50_majrule = [&U] (7[&prob=1.00000000e+00,prob(percent)="100"]:1.128454e-01[&length_mean=1.14842354e-01,length_median=1.12845400e-01,length_95%HPD={7.79317000e-02,1.49203800e-01}],8[&prob=1.00000000e+00,prob(percent)="100"]:1.081234e-01[&length_mean=1.11109332e-01,length_median=1.08123400e-01,length_95%HPD={7.69739100e-02,1.53634300e-01}],(((((1[&prob=1.00000000e+00,prob(percent)="100"]:8.049898e-03[&length_mean=8.52002014e-03,length_median=8.04989800e-03,length_95%HPD={2.40466200e-03,1.57101300e-02}],2[&prob=1.00000000e+00,prob(percent)="100"]:2.185660e-02[&length_mean=2.26639742e-02,length_median=2.18566000e-02,length_95%HPD={1.34066500e-02,3.52615900e-02}])[&prob=9.98668442e-01,prob(percent)="100"]:2.061124e-02[&length_mean=2.11453234e-02,length_median=2.06112400e-02,length_95%HPD={1.09060300e-02,3.08259600e-02}],3[&prob=1.00000000e+00,prob(percent)="100"]:6.736691e-03[&length_mean=7.33462900e-03,length_median=6.73669100e-03,length_95%HPD={2.30132500e-03,1.38208600e-02}])[&prob=9.98668442e-01,prob(percent)="100"]:3.144943e-02[&length_mean=3.22301487e-02,length_median=3.14494300e-02,length_95%HPD={1.86770600e-02,4.96658700e-02}],4[&prob=1.00000000e+00,prob(percent)="100"]:1.023627e-01[&length_mean=1.03628629e-01,length_median=1.02362700e-01,length_95%HPD={7.59992300e-02,1.32522500e-01}])[&prob=7.00399467e-01,prob(percent)="70"]:1.461974e-02[&length_mean=1.54196857e-02,length_median=1.46197400e-02,length_95%HPD={2.78354500e-04,2.87636100e-02}],5[&prob=1.00000000e+00,prob(percent)="100"]:2.716180e-02[&length_mean=2.77490248e-02,length_median=2.71618000e-02,length_95%HPD={1.11520000e-02,4.50421300e-02}])[&prob=5.01997337e-01,prob(percent)="50"]:2.251438e-02[&length_mean=2.27526305e-02,length_median=2.25143800e-02,length_95%HPD={7.68673400e-03,4.42118400e-02}],6[&prob=1.00000000e+00,prob(percent)="100"]:1.362337e-01[&length_mean=1.36203315e-01,length_median=1.36233700e-01,length_95%HPD={9.90718300e-02,1.81382900e-01}])[&prob=9.30758988e-01,prob(percent)="93"]:3.333525e-02[&length_mean=3.42431786e-02,length_median=3.33352500e-02,length_95%HPD={1.33651500e-02,5.81677000e-02}]);
+end;

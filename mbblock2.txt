@@ -1,0 +1,12 @@
+begin mrbayes;
+ set autoclose=yes;
+ prset brlenspr=unconstrained:exp(10.0);
+ prset shapepr=exp(1.333);
+ prset tratiopr=beta(24.0,1.0);
+ prset statefreqpr=dirichlet(3.011,2.703,1.347,2.939);
+ lset nst=2 rates=invgamma ngammacat=4;
+ mcmcp ngen=1000000 samplefreq=100 printfreq=100 nruns=2 nchains=4 savebrlens=yes;
+ outgroup Elephas-maximus;
+ mcmc;
+ sumt;
+end;
