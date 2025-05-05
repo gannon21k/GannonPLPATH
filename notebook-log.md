@@ -131,8 +131,41 @@ begin mrbayes;
  sumt;
 end;
 
-% cat gannon_elephant_aligned4_single_line.nex mbblock2.txt > gannon_elephant_aligned-mb.nex
-% mb gannon_elephant_aligned-mb.nex
+% cat gannon_elephant_aligned4_single_lineNAMED.nex mbblock2.txt > gannon_elephant_aligned_single_lineNAMED-mb.nex
+
+we run mrbayes
+
+% mb
+
+we execute which runs mcmc
+
+% execute gannon_elephant_aligned_single_lineNAMED-mb.nex
+
+
+
+
+Coalescent
+
+Software Description:
+ASTRAL infers species trees from a set of gene trees under the multi-species coalescent (MSC) model. It is designed to handle gene tree discordance caused by incomplete lineage sorting (ILS).
+
+Strengths:
+It is very fast, scalable to large datasets, and statistically consistent under the MSC model. ASTRAL can handle missing data and partially resolved gene trees.
+
+Weaknesses:
+ASTRAL is sensitive to errors in the input gene trees. It assumes ILS is the only cause of discordance and does not model gene flow or hybridization.
+
+Assumptions:
+The method assumes that gene trees are independent and that ILS is the primary source of discordance. It also assumes that gene tree topologies are reasonably accurate.
+
+
+% java -jar astral.5.7.8.jar
+This is ASTRAL version 5.7.8
+
+
+We use the best tree derived from RAxML and plug it into Astral:
+% java -jar astral.5.7.8.jar -i T3.raxml.bestTree\ copy -o species_tree.tre 
+
 
 
 
