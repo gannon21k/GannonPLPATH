@@ -1,0 +1,51 @@
+
+RAxML-NG v. 1.2.2 released on 30.04.2024 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Apple M1, 8 cores, 16 GB RAM
+
+RAxML-NG was called at 07-May-2025 16:18:12 as follows:
+
+./raxml-ng --check --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model GTR+G
+
+Analysis options:
+  run mode: Alignment validation
+  start tree(s): 
+  random seed: 1746652692
+  SIMD kernels: SSE3
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+[00:00:00] Reading alignment from file: gannon_elephant_aligned4_single_lineNAMED.fasta
+[00:00:00] Loaded alignment with 50 taxa and 1961 sites
+
+WARNING: Sequences Laa_Uganda1 and Laa_Uganda3 are exactly identical!
+WARNING: Sequences Laa_Zimbabwe1 and Laa_Zimbabwe9 are exactly identical!
+WARNING: Duplicate sequences found: 2
+
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: was saved to: /Users/gannonkreuser/Desktop/GannonPLPATH/raxml-ng_v1.2.2_macos/gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.reduced.phy
+
+Alignment comprises 1 partitions and 1961 sites
+
+Partition 0: noname
+Model: GTR+FO+G4m
+Alignment sites: 1961
+Gaps: 5.19 %
+Invariant sites: 89.85 %
+
+
+NOTE: Binary MSA file already exists: gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.rba
+
+
+Alignment can be successfully read by RAxML-NG.
+
+
+Execution log saved to: /Users/gannonkreuser/Desktop/GannonPLPATH/raxml-ng_v1.2.2_macos/gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.log
+
+Analysis started: 07-May-2025 16:18:12 / finished: 07-May-2025 16:18:12
+
+Elapsed time: 0.006 seconds
+

@@ -5,6 +5,8 @@ About 3700 bp fragments along the cytochrome b gene, the control region, 12S rRN
 
 I will choose to use MUSCLE because it is overall the best sequencer between itself, ClustalW, and TeaCoffee. A limitation it has is that it doesn't do well with high diversity data, which I don't have. My data should be pretty similar. Another shining quality is that it has improved progressive alignment and has a large size capability. Because of these factors, I will choose MUSCLE.
 
+
+
 (base) gannonkreuser@Gannons-MBP GannonPLPATH % muscle -align gannon_elephant.fasta -output gannon_elephant_aligned.fasta
 
 muscle 5.3.osxarm64 [-]  17.2Gb RAM, 8 cores
@@ -22,6 +24,10 @@ Input: 50 seqs, avg length 1889, max 1990, min 1141
 02:15 323Mb   100.0% Consistency (1/2)
 02:17 354Mb   100.0% Consistency (2/2)
 02:19 359Mb   100.0% Refining         
+
+
+
+
 
 
 
@@ -58,26 +64,74 @@ All sites evolve the same
 The phylogenetic tree follows a bifurcating structure.
 
 
+
+
 Checking the version:
 % ./raxml-ng -v
 
 Checking for MSA: 
-% ./raxml-ng --check --msa gannon_elephant_aligned.fasta\ copy  --model GTR+G
+% ./raxml-ng --check --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model GTR+G
 
 Using the --parse command: 
-% ./raxml-ng --parse --msa gannon_elephant_aligned.fasta\ copy --model GTR+G
+% ./raxml-ng --parse --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model GTR+G
 
 Infer: 
-./raxml-ng --msa gannon_elephant_aligned.fasta\ copy --model GTR+G --prefix T3 --threads 2 --seed 5
+./raxml-ng --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model GTR+G --prefix T1 --threads 2 --seed 5
 
-Final LogLikelihood: -4527.690451
+Final LogLikelihood: -4527.454623
 
-AIC score: 9267.380902 / AICc score: 9279.616069 / BIC score: 9858.989144
+AIC score: 9266.909247 / AICc score: 9279.144414 / BIC score: 9858.517488
 Free parameters (model + branch lengths): 106
 
-WARNING: Best ML tree contains 12 near-zero branches!
+WARNING: Best ML tree contains 11 near-zero branches!
 
 
+Infer using jukes cantor model: 
+% ./raxml-ng --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model JC --prefix jc_run --threads 2 --seed 5
+
+Final LogLikelihood: -4998.827247
+
+AIC score: 10191.654495 / AICc score: 10201.859540 / BIC score: 10733.031848
+Free parameters (model + branch lengths): 97
+
+WARNING: Best ML tree contains 11 near-zero branches!
+
+
+Infer using HKY-G model: 
+./raxml-ng --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model HKY+G --prefix hky_run --threads 2 --seed 5
+
+Final LogLikelihood: -4530.830609
+
+AIC score: 9265.661218 / AICc score: 9276.970152 / BIC score: 9834.944620
+Free parameters (model + branch lengths): 102
+
+WARNING: Best ML tree contains 11 near-zero branches!
+
+Run the GTR+G model again but include bootstrapping support:
+% ./raxml-ng --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model GTR+G --bootstrap 1000 --threads 2 --prefix bootstraps --seed 12345
+
+
+./raxml-ng --check --msa gannon_elephant_aligned4_single_lineNAMED.fasta --model GTR+G
+
+
+./raxml-ng --check --msa gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.reduced.phy --model GTR+G 
+
+./raxml-ng --parse --msa gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.reduced.phy --model GTR+G
+
+./raxml-ng --msa gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.reduced.phy --model GTR+G --prefix T3 --threads 2 --seed 123  
+
+
+
+test: DELETE
+raxml-ng --bootstrap --msa prim.phy --model GTR+G --prefix T8 --seed 2 --threads 2 --bs-trees 
+
+./raxml-ng --bootstrap --msa gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.reduced.phy --model GTR+G --prefix T4 --threads 2 --seed 123 --bs-trees 200
+
+ raxml-ng --bsconverge --bs-trees T7.raxml.bootstraps --prefix T9 --seed 2 --threads 2 --bs-cutoff 0.01
+
+raxml-ng --all --msa prim.phy --model GTR+G --prefix T15 --seed 2 --threads 2 --bs-metric fbp,tbe
+
+./raxml-ng --all --msa gannon_elephant_aligned4_single_lineNAMED.fasta.raxml.reduced.phy --model GTR+G --prefix T5 --seed 2 --threads 2 --bs-metric fbp,tbe
 
 
 MrBayes
@@ -130,6 +184,29 @@ begin mrbayes;
  mcmc;
  sumt;
 end;
+
+I create an additional text block to run the priors only, with an additional line to tell the program to ignore the data and run only the priors
+
+% touch mbblockPriorstest.txt
+% open mbblockPriorstest.txt
+
+begin mrbayes;
+ set autoclose=yes;
+ prset brlenspr=unconstrained:exp(10.0);
+ prset shapepr=exp(1.333);
+ prset tratiopr=beta(24.0,1.0);
+ prset statefreqpr=dirichlet(3.011,2.703,1.347,2.939);
+ lset nst=2 rates=invgamma ngammacat=4;
+
+ prset sampleprob=0.0;
+
+ mcmcp ngen=1000000 samplefreq=100 printfreq=100 nruns=2 nchains=4 savebrlens=yes;
+ outgroup Emi_Burma1;
+ mcmc;
+ sumt;
+end;
+
+% cat gannon_elephant_aligned4_single_lineNAMED.nex mbblockPriorstest.txt > gannon_elephant_aligned_single_lineNAMED-mb.nex 
 
 % cat gannon_elephant_aligned4_single_lineNAMED.nex mbblock2.txt > gannon_elephant_aligned_single_lineNAMED-mb.nex
 
